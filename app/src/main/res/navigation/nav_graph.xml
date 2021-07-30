@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+    //nevigation바에 사용될 fragment organize(홈(실제 홈),알림설정,검색,전체공지,스크랩공지 순으로 입력)
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.noticesubscribe.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/alarmFragment"
+        android:name="com.example.noticesubscribe.fragments.AlarmFragment"
+        android:label="fragment_alarm"
+        tools:layout="@layout/fragment_alarm" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.noticesubscribe.fragments.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/allnoticeFragment"
+        android:name="com.example.noticesubscribe.fragments.AllnoticeFragment"
+        android:label="fragment_allnotice"
+        tools:layout="@layout/fragment_allnotice" />
+    <fragment
+        android:id="@+id/subscribeFragment"
+        android:name="com.example.noticesubscribe.fragments.SubscribeFragment"
+        android:label="fragment_subscribe"
+        tools:layout="@layout/fragment_subscribe" />
+</navigation>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/searchFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.noticesubscribe.fragments.SearchFragment">
+    //제목 상단 배경
+    <ImageView
+        android:id="@+id/titlebar"
+        android:layout_width="411dp"
+        android:layout_height="93dp"
+        android:src="@drawable/yellotitlebox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    //제목
+    <TextView
+        android:id="@+id/titletext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="검색"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/titlebar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titlebar" />
+    //전체 공지내 검색결과 text
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="18dp"
+        android:text="전체 공지내 검색결과"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+    //검색창
+
+    //검색할 때 누를 버튼(기능구현은 안한 상태)
+
+    <EditText
+        android:id="@+id/searchWord"
+        android:layout_width="328dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/box_addkeywordbox"
+        android:hint="search"
+        android:inputType="text"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titlebar" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="53dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="290dp"
+        android:layout_marginLeft="290dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/button_forsearch"
+        app:backgroundTint="#00FFFFFF"
+        app:backgroundTintMode="screen"
+        app:layout_constraintBottom_toBottomOf="@+id/searchWord"
+        app:layout_constraintEnd_toEndOf="@+id/searchWord"
+        app:layout_constraintStart_toStartOf="@+id/searchWord"
+        app:layout_constraintTop_toTopOf="@+id/searchWord" />
+    //검색 기록 text
+
+    //검색부분과 공지부분을 분리해주는 연한 선
+
+    <TextView
+        android:id="@+id/shtitleView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="검색기록"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/searchWord"
+        app:layout_constraintTop_toBottomOf="@+id/searchWord" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="410dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="276dp"
+        android:src="@drawable/noticeupperside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titlebar" />
+    //검색기록(시계아이콘+검색했던 단어)가 뜨는 레이어
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/shtitleView6"
+        app:layout_constraintTop_toBottomOf="@+id/shtitleView6">
+        //시계
+
+        //검색했던 단어 text
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    //검색한 공지들이 뜨게될 recyclerview
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_searchnotice"
+        android:layout_width="0dp"
+        android:layout_height="610dp"
+        android:layout_marginTop="54dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="57dp"
+        android:layout_height="43dp"
+        android:background="#F4AA8D"
+        android:entries="@array/my_array"
+        app:layout_constraintBottom_toBottomOf="@+id/searchWord"
+        app:layout_constraintEnd_toStartOf="@+id/searchWord"
+        app:layout_constraintTop_toTopOf="@+id/searchWord"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/searchhistoryView"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_weight="1"
+        android:text="검색했던 단어"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toEndOf="@+id/shtitleView6"
+        app:layout_constraintTop_toBottomOf="@+id/searchWord" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_searchhistory"
+        android:layout_width="396dp"
+        android:layout_height="130dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.865"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchWord"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/clockView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_weight="1"
+        android:src="@drawable/icon_clock"
+        app:layout_constraintBottom_toBottomOf="@+id/shtitleView6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shtitleView6"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
