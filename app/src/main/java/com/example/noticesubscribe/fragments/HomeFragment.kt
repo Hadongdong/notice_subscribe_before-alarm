@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.noticesubscribe.*
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
@@ -26,7 +27,7 @@ class HomeFragment : Fragment() {
     //mbinding을 통해 네비게이션 바를 이용해서 이동할 수 있는 fragment를 만듦
     private var mBinding: FragmentHomeBinding? = null
     val db=FirebaseFirestore.getInstance()
-    var notice_list = ArrayList<Notice>()
+    //var notice_list = ArrayList<Notice>()
     val keyList = arrayListOf<Keyword>()//첫번째 리스트 아이템 배열(구독키워드)
     val keyadapter = KeyWordAdapter(keyList)//첫번째 리사이클러뷰 어댑터 부르기(구독키워드)
 
@@ -61,6 +62,7 @@ class HomeFragment : Fragment() {
         val notice_list = arrayListOf<Notice>()
         //현재의 구독키워드 보여줌
         db.collection("Contacts")
+           // .orderBy()
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
@@ -89,6 +91,7 @@ class HomeFragment : Fragment() {
     //키워드 클릭시 관련공지사항 나옴
     fun NoticeAdapter.search(key:String,option: String){
         db.collection("total")   // 작업할 컬렉션
+            .orderBy("date", Query.Direction.DESCENDING)
             .get()      // 문서 가져오기
             .addOnSuccessListener { result ->
                 // 성공할 경우

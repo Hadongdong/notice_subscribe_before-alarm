@@ -173,5 +173,17 @@
         app:layout_constraintTop_toTopOf="@+id/shtitleView6"
         app:layout_constraintVertical_bias="0.0" />
 
+    <ImageView
+        android:id="@+id/searh_delete"
+        android:layout_width="25dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/cancel"
+        app:layout_constraintBottom_toBottomOf="@+id/searchWord"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintTop_toTopOf="@+id/searchWord"
+        app:layout_constraintVertical_bias="0.523" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

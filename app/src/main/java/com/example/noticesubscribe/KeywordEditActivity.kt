@@ -12,8 +12,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.noticesubscribe.databinding.ActivityKeywordEditBinding
 import com.example.noticesubscribe.databinding.ActivityMainBinding
+import com.google.firebase.Timestamp.now
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import java.sql.Timestamp
+import java.time.Instant.now
+import java.time.LocalDate.now
+import java.time.LocalDateTime.now
 
 class KeywordEditActivity : AppCompatActivity() {
     private var mainbinding: ActivityKeywordEditBinding? = null
@@ -22,6 +28,7 @@ class KeywordEditActivity : AppCompatActivity() {
     val keyList = arrayListOf<Keyword>()//첫번째 리스트 아이템 배열(구독키워드)
     val keyadapter = KeyWordAdapter(keyList)//첫번째 리사이클러뷰 어댑터 부르기(구독키워드)
     var mDocuments: List<DocumentSnapshot>? = null
+
 //    출처: https://duckssi.tistory.com/42 [홍드로이드의 야매코딩]
     override fun onDestroy() { // onDestroy 에서 binding class 인스턴스 참조를 정리해주어야 한다.
         mainbinding = null
@@ -44,17 +51,23 @@ class KeywordEditActivity : AppCompatActivity() {
 //                Log.w("MainActivity", "Error getting documents: $exception")
 //            }
         //(mainbinding?.rvKeyword?.adapter as KeyWordAdapter).getDataFromFirestore()
+        //키워드 추가부분
         mainbinding?.btnAddkeyword?.setOnClickListener {
             val input = binding.keywordinput
             // EditText에서 문자열을 가져와 hashMap으로 만듦
             val data2 = hashMapOf("key" to input.text.toString())
+           // val time=hashMapOf<String,Any>("timestamp" to FieldValue.serverTimestamp())
             // Contacts 컬렉션에 data를 자동 이름으로 저장
             db.collection("Contacts")
                 .add(data2)
                 .addOnSuccessListener {
                     // 성공할 경우
+//                    db.collection("Contacts")
+//                        .document("key")
+//                        .update(time).addOnCompleteListener{}
                     Toast.makeText(this, "키워드가 추가되었습니다", Toast.LENGTH_SHORT).show()
                     db.collection("Contacts")//작업할 컬렉션
+//                        .orderBy("timestamp")
                         .get() // 문서 가져오기
                         .addOnSuccessListener { result ->
                             keyList.clear()
@@ -82,6 +95,7 @@ class KeywordEditActivity : AppCompatActivity() {
         //이제 키워드 초록 에딧텍스트에 넣어줘야함 선언해줘야한다(백엔드 작업시 불필요한 부분)
         // binding.keywordedittext.text = binding.keywordinput.text
 
+        //키워드 삭제
         (mainbinding?.rvKeyword?.adapter as KeyWordAdapter).getDataFromFirestore()
         keyadapter.itemClick = object : KeyWordAdapter.ItemClick {
             override fun onClick(view: View, pos: Int) {
@@ -92,13 +106,17 @@ class KeywordEditActivity : AppCompatActivity() {
             }
 
         }
-
+        mainbinding?.removeBtn?.setOnClickListener{
+            val input = mainbinding?.keywordinput
+            input?.getText()?.clear()
+        }
    }
 
     //
-    // 키워드 삭제 관련부분 (구현실패) 참고사이트: https://stackoverflow.com/questions/64370610/android-kotlin-how-can-i-delete-the-data-from-firebase
+    // 키워드 삭제 관련부분 참고사이트: https://stackoverflow.com/questions/64370610/android-kotlin-how-can-i-delete-the-data-from-firebase
     fun KeyWordAdapter.getDataFromFirestore() {
         db.collection("Contacts")
+//            .orderBy("date")
             .addSnapshotListener{ snapshot, exception ->
                 if (exception != null) {
                 }
